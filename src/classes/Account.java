@@ -1,12 +1,19 @@
 package classes;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Account {
 	public static ArrayList<Account> createdAcc = new ArrayList<>();
 	private int accNum;
 	private String userName;
 	private double balance;
+	private static File log=new File("accounts.txt");
 	
 	public Account(int accNum, String userName, double balance) {
 		if(findAcc(accNum)==null) {
@@ -56,6 +63,24 @@ public class Account {
 		}
 		else
 			return false;
+	}
+	
+	public static void write() throws IOException {
+		PrintWriter writer=new PrintWriter(log);
+		
+		for(int i=0; i<createdAcc.size(); i++) 
+			writer.println(createdAcc.get(i).accNum + " " + createdAcc.get(i).userName + " " + createdAcc.get(i).balance);
+		
+		writer.close();
+	}
+	
+	public static void read() throws FileNotFoundException {
+		Scanner reader=new Scanner(log);
+		
+		while(reader.hasNext())
+			new Account(reader.nextInt(), reader.nextLine(), reader.nextDouble());
+		
+		reader.close();
 	}
 
 	@Override

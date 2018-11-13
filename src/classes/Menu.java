@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -70,10 +71,11 @@ public class Menu {
 		System.out.println("\n");
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		int odabir=0;
 
 		while(odabir!=4) {
+			Account.read();
 			System.out.println("Odaberite radnju:");
 			System.out.println("1. Kreiraj novi racun \n2. Transfer sredstava \n3. Ispis stanja racuna \n4. Izlaz");
 			odabir=input.nextInt();
@@ -90,7 +92,7 @@ public class Menu {
 			break;
 
 			case 4 : 
-				break;
+			break;
 
 			default : System.out.println("Pogresan unos, molimo pokusajte ponovo.");
 			break;
@@ -98,6 +100,7 @@ public class Menu {
 		}
 		
 		input.close();
+		Account.write();
 		System.out.println("THE END");
 
 	}
