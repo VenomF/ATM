@@ -77,7 +77,7 @@ public class Account {
 		Scanner reader=new Scanner(log);
 		
 		while(reader.hasNext())
-			new Account(reader.nextInt(), reader.nextLine(), reader.nextDouble());
+			new Account(reader.nextInt(), reader.next(), reader.nextDouble());
 		
 		reader.close();
 	}

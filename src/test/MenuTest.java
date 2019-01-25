@@ -7,8 +7,8 @@ import org.junit.Test;
 public class MenuTest {
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void createAccount_validInfo_objectOfTypeAccountConstructed() {
+		
 	}
 
 }

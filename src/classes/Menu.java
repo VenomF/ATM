@@ -4,19 +4,19 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
-	
+
 	static Scanner input=new Scanner(System.in);
-	
+
 	public static void createAccount() {
 		System.out.println("Unesite broj racuna.");
 		int accNum=input.nextInt();
 		try {
 			System.out.println("Unesite vase ime.");
 			String name=input.next();
-			
+
 			System.out.println("Unesite pocetno stanje racuna");
 			double startingBalance=input.nextDouble();
-			
+
 			if(startingBalance>=0) {
 				Account acc=new Account(accNum, name, startingBalance);
 				System.out.println(acc.toString());
@@ -31,18 +31,18 @@ public class Menu {
 	}
 
 	public static void transferFunds() {
-		
+
 		System.out.println("Unesite broj racuna sa kojeg zelite prebaciti sredstva.");
 		int sourceAccNum=input.nextInt();
-		
+
 		System.out.println("Unesite broj racuna na koji zelite prebaciti sredstva.");
 		int targetAccNum=input.nextInt();
-		
+
 		System.out.println("Unesite kolicinu koju zelite prebaciti.");
 		double transferBalance=input.nextDouble();
-		
+
 		Account sourceAcc=Account.findAcc(sourceAccNum);
-		
+
 		try {
 			if(sourceAcc.transfer(transferBalance, targetAccNum)) {
 				System.out.println("<<uspjesno ste prebacili>>" + transferBalance + ">>sa racuna>>" + sourceAccNum + ">>na racun>>" + targetAccNum + ">>");
@@ -58,13 +58,13 @@ public class Menu {
 		System.out.println("Unesite broj racuna za koji zelite informacije.");
 		int accNumber=input.nextInt();
 		Account userAcc=Account.findAcc(accNumber);
-		
+
 		try{
 			System.out.println(userAcc.toString());
 			System.out.println("press any key to continue");
 			input.next().charAt(0);
 		}
-		
+
 		catch(NullPointerException g) {
 			System.out.println("Takav racun ne postoji.");
 		}
@@ -92,13 +92,13 @@ public class Menu {
 			break;
 
 			case 4 : 
-			break;
+				break;
 
 			default : System.out.println("Pogresan unos, molimo pokusajte ponovo.");
 			break;
 			}
 		}
-		
+
 		input.close();
 		Account.write();
 		System.out.println("THE END");
