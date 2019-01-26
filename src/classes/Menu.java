@@ -3,11 +3,26 @@ package classes;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * <b>Menu class</b>
+ * 
+ * <p>menu class has one global data field (Scanner), it cannot be instantieted, contains four methods, all static,
+ * one main, it is used for simple ATM application.</p>
+ * 
+ * @version 1.6
+ * @author Faruk Becirovic (VenomF)
+ *
+ */
+
 public class Menu {
 
 	static Scanner input=new Scanner(System.in);
 
 	public static void createAccount() {
+		/**
+		 * This method is used for creation of new bank accounts. It takes information from user and the passes
+		 * that information to constructor from Account class.
+		 */
 		System.out.println("Unesite broj racuna.");
 		int accNum=input.nextInt();
 		try {
@@ -31,6 +46,11 @@ public class Menu {
 	}
 
 	public static void transferFunds(int sourceAccNum, int targetAccNum, double transferBalance) {
+		/**
+		 * Method used for money transfers from one bank account to another.
+		 * user inputs source account number target account number and amount for transfer, after that
+		 * method calls <b>transfer</b> method from <b>Account</b> class.
+		 */
 
 		Account sourceAcc=Account.findAcc(sourceAccNum);
 
@@ -46,6 +66,10 @@ public class Menu {
 	}
 
 	public static boolean accInfo(int accNumber) {
+		/**
+		 * Method that takes bank account from user, calls <b>toString</b> method from <b>Account</b> class and
+		 * outputs basic accout information to console.
+		 */
 		Account userAcc=Account.findAcc(accNumber);
 
 		try{
@@ -64,6 +88,10 @@ public class Menu {
 	}
 
 	public static void main(String[] args) throws IOException {
+		/**
+		 * Main method hold main menu for this simple ATM/Banking application. User chooses witch operation to 
+		 * perform, then appropriate methods are called in order to perform desired operations.
+		 */
 		int odabir=0;
 
 		while(odabir!=4) {
