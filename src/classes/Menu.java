@@ -30,16 +30,7 @@ public class Menu {
 		System.out.println();
 	}
 
-	public static void transferFunds() {
-
-		System.out.println("Unesite broj racuna sa kojeg zelite prebaciti sredstva.");
-		int sourceAccNum=input.nextInt();
-
-		System.out.println("Unesite broj racuna na koji zelite prebaciti sredstva.");
-		int targetAccNum=input.nextInt();
-
-		System.out.println("Unesite kolicinu koju zelite prebaciti.");
-		double transferBalance=input.nextDouble();
+	public static void transferFunds(int sourceAccNum, int targetAccNum, double transferBalance) {
 
 		Account sourceAcc=Account.findAcc(sourceAccNum);
 
@@ -54,21 +45,22 @@ public class Menu {
 		}
 	}
 
-	public static void accInfo() {
-		System.out.println("Unesite broj racuna za koji zelite informacije.");
-		int accNumber=input.nextInt();
+	public static boolean accInfo(int accNumber) {
 		Account userAcc=Account.findAcc(accNumber);
 
 		try{
 			System.out.println(userAcc.toString());
 			System.out.println("press any key to continue");
 			input.next().charAt(0);
+			return true;
 		}
 
 		catch(NullPointerException g) {
 			System.out.println("Takav racun ne postoji.");
+			System.out.println("\n");
+			return false;
+
 		}
-		System.out.println("\n");
 	}
 
 	public static void main(String[] args) throws IOException {
@@ -85,10 +77,22 @@ public class Menu {
 			case 1 : createAccount();
 			break;
 
-			case 2 : transferFunds();
+			case 2 :
+				System.out.println("Unesite broj racuna sa kojeg zelite prebaciti sredstva.");
+				int sourceAccNum=input.nextInt();
+
+				System.out.println("Unesite broj racuna na koji zelite prebaciti sredstva.");
+				int targetAccNum=input.nextInt();
+
+				System.out.println("Unesite kolicinu koju zelite prebaciti.");
+				double transferBalance=input.nextDouble();
+				transferFunds(sourceAccNum, targetAccNum, transferBalance);
 			break;
 
-			case 3 : accInfo();
+			case 3 :
+				System.out.println("Unesite broj racuna za koji zelite informacije.");
+				if(accInfo(input.nextInt()))
+					System.out.println("\n");
 			break;
 
 			case 4 : 

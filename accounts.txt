@@ -1,4 +1,2 @@
-0 Faruk 140.0
-4321 Faruk 0.0
-1111 Faruk 100.0
 1234 Faruk 120.0
+4321 Faruk 50.0
